@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {ThemeContext} from 'styled-components/native';
 import styled from 'styled-components/native';
-import {Button} from 'react-native';
+import {Button} from '../components';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Container = styled.View`
@@ -20,10 +21,20 @@ const StyledText = styled.Text`
 
 const Signin = ({navigation}) => {
   const insets = useSafeAreaInsets();
+  const theme = useContext(ThemeContext);
 
   return <Container insets={insets}>
     <StyledText> Signin </StyledText>
-    <Button title="signup" onPress={() => navigation.navigate('Signup')} />
+        <Button
+          title="Sign in"
+          onPress={ () => console.log('signup')}
+        />
+        <Button
+          title="or sign up"
+          onPress={ () => navigation.navigate('Signup') }
+          containerStyle={ { marginTop: 0, backgroundColor: 'transparent' } }
+          textStyle={ { color: theme.btnTextLink, fontSize: 18 } }
+        />
   </Container>;
 };
 
